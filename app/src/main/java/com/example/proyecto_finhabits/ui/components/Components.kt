@@ -15,8 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.finhabits.ui.theme.ExpenseRed
-import com.example.finhabits.ui.theme.IncomeGreen
+import com.example.proyecto_finhabits.ui.theme.ExpenseRed
+import com.example.proyecto_finhabits.ui.theme.IncomeGreen
 import com.example.proyecto_finhabits.data.entities.Transaction
 import com.example.proyecto_finhabits.data.entities.TransactionType
 import java.text.NumberFormat
