@@ -11,6 +11,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.foundation.layout.Column
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.proyecto_finhabits.ui.components.FinHabitsTopBar
 import com.example.proyecto_finhabits.data.entities.Category
@@ -186,17 +191,39 @@ fun CategorySelector(selected: Category, onSelect: (Category) -> Unit) {
     val rows = Category.values().toList().chunked(3)
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         rows.forEach { rowItems ->
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(
+                Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 rowItems.forEach { cat ->
                     FilterChip(
                         selected = selected == cat,
                         onClick = { onSelect(cat) },
-                        label = { Text("${cat.emoji} ${cat.label}", maxLines = 1) },
+                        label = {
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Text(
+                                    text = cat.emoji,
+                                    fontSize = 18.sp,
+                                    textAlign = TextAlign.Center
+                                )
+                                Text(
+                                    text = cat.label,
+                                    fontSize = 10.sp,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                        },
                         modifier = Modifier.weight(1f)
                     )
                 }
-                // Fill remaining space in last row
-                repeat(3 - rowItems.size) { Spacer(Modifier.weight(1f)) }
+                repeat(3 - rowItems.size) {
+                    Spacer(Modifier.weight(1f))
+                }
             }
         }
     }
